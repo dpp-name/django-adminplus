@@ -10,6 +10,7 @@ def is_class_based_view(view):
 
 class AdminPlusMixin(object):
     """Mixin for AdminSite to allow registering custom admin views."""
+    custom_views_title = 'Custom Views'
 
     index_template = 'adminplus/index.html'  # That was easy.
 
@@ -68,7 +69,8 @@ class AdminPlusMixin(object):
         # Sort views alphabetically.
         custom_list.sort(key=lambda x: x[1])
         extra_context.update({
-            'custom_list': custom_list
+            'custom_list': custom_list,
+            'custom_views_title': self.custom_views_title,
         })
         return super(AdminPlusMixin, self).index(request, extra_context)
 
